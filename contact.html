@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Pro Prima</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt="Logo"></a>
+            </div>
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="#">Products</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"> Glass & Plasticwares</a></li>
+                            <li><a href="#">Lab Equipments</a></li>
+                            <li><a href="#">General Equipments</a></li>
+                            <li><a href="#">Lab Chemicals</a></li>
+                            <li><a href="#">Lab Furniture & Fumehood Systems</a></li>
+                            <li><a href="#">Minerals</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-btn">&#9776;</button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contact Form -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2 class="contact-title">Get in Touch</h2>
+                <p>If you have any inquiries, feedback, or require support, please don’t hesitate to contact us. We’re
+                    here to help you.</p>
+            </div>
+
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your name" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email" />
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required
+                        placeholder="Your message here..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>About Pro Prima</h3>
+                    <p>We are committed to providing you with on time delivery and affordable prices of laboratory
+                        equipments, glasswares and our range of products to meet your every need.</p>
+                    <div class="social-footer">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fas fa-phone-alt"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                        <!-- <a href="#"><i class="fab fa-linkedin-in"></i></a> -->
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Product Types</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"> Glass & Plasticwares</a></li>
+                        <li><a href="#">Lab Equipments</a></li>
+                        <li><a href="#">General Equipments</a></li>
+                        <li><a href="#">Lab Chemicals</a></li>
+                        <li><a href="#">Lab Furniture & Fumehood Systems</a></li>
+                        <li><a href="#">Minerals</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Pro Prima Enterprises. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
