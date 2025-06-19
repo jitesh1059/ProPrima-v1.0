@@ -2,7 +2,6 @@
 // Index Page
 // 
 
-
 // Mobile menu toggle
 // Sidebar Toggle
 const menuBtn = document.querySelector('.mobile-menu-btn');
@@ -47,14 +46,15 @@ function showSlide(n) {
 
 document.addEventListener('DOMContentLoaded', initFadeSlider);
 
+
 // Scroll JSs
-// window.addEventListener('scroll', () => {
-//     const scrollY = window.scrollY;
-//     slides.forEach(img => {
-//         // Move image vertically at 20% of scroll speed for subtle parallax
-//         img.style.transform = `translateY(${scrollY}px)`;
-//     });
-// });
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    slides.forEach(img => {
+        // Move image vertically at 20% of scroll speed for subtle parallax
+        img.style.transform = `translateY(${0.9 * scrollY}px)`;
+    });
+});
 
 
 // 
@@ -93,3 +93,81 @@ const certSwiper = new Swiper('.certificates-slider', {
         }
     }
 });
+
+// 
+// Products Page
+// 
+
+const labChemSwiper = new Swiper('.labChemSwiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+        768: {
+            slidesPerView: 2,
+        },
+        1024: {
+            slidesPerView: 3,
+        }
+    }
+});
+
+// Products Sub-Header Navigation with Smooth Scroll + Active Highlight
+
+// Select all sub-header links and section targets
+const productNavLinks = document.querySelectorAll('.products-nav a');
+const productSections = document.querySelectorAll('.product-category');
+
+// Smooth scroll on click
+productNavLinks.forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Remove existing active classes
+        productNavLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+
+        // Scroll to target section with offset for fixed header/sub-nav
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+
+        if (target) {
+            const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+            const subnavHeight = document.querySelector('.products-nav')?.offsetHeight || 0;
+            const offset = headerHeight + subnavHeight + 20;
+
+            window.scrollTo({
+                top: target.offsetTop - offset,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Update active class on scroll
+function updateProductNavHighlight() {
+    const scrollY = window.scrollY;
+
+    productSections.forEach(section => {
+        const sectionTop = section.offsetTop - 180; // adjust if needed
+        const sectionHeight = section.offsetHeight;
+
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+            const currentId = `#${section.id}`;
+
+            productNavLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+}
+
+// Call on load and scroll
+window.addEventListener('load', updateProductNavHighlight);
+window.addEventListener('scroll', updateProductNavHighlight);
