@@ -115,59 +115,109 @@ const labChemSwiper = new Swiper('.labChemSwiper', {
     }
 });
 
-// Products Sub-Header Navigation with Smooth Scroll + Active Highlight
-
-// Select all sub-header links and section targets
-const productNavLinks = document.querySelectorAll('.products-nav a');
+// Enhanced Products Navigation
+const productNavLinks = document.querySelectorAll('.products-nav ul li a');
 const productSections = document.querySelectorAll('.product-category');
 
-// Smooth scroll on click
+function updateActiveNavLink() {
+    let currentSection = '';
+
+    productSections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        const scrollPosition = window.scrollY + 180; // Adjusted for sticky nav
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = `#${section.id}`;
+        }
+    });
+
+    productNavLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === currentSection) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Smooth scrolling for product nav links
 productNavLinks.forEach(link => {
     link.addEventListener('click', function (e) {
         e.preventDefault();
 
-        // Remove existing active classes
+        // Remove active class from all links
         productNavLinks.forEach(l => l.classList.remove('active'));
+
+        // Add active class to clicked link
         this.classList.add('active');
 
-        // Scroll to target section with offset for fixed header/sub-nav
         const targetId = this.getAttribute('href');
-        const target = document.querySelector(targetId);
+        const targetSection = document.querySelector(targetId);
 
-        if (target) {
-            const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
-            const subnavHeight = document.querySelector('.products-nav')?.offsetHeight || 0;
-            const offset = headerHeight + subnavHeight + 20;
+        if (targetSection) {
+            const headerHeight = document.querySelector('.header').offsetHeight;
+            const navHeight = document.querySelector('.products-nav').offsetHeight;
+            const offset = headerHeight + navHeight - 10;
 
             window.scrollTo({
-                top: target.offsetTop - offset,
+                top: targetSection.offsetTop - offset,
                 behavior: 'smooth'
             });
         }
     });
 });
 
-// Update active class on scroll
-function updateProductNavHighlight() {
-    const scrollY = window.scrollY;
+// Initialize and update on scroll
+window.addEventListener('load', updateActiveNavLink);
+window.addEventListener('scroll', updateActiveNavLink);
 
-    productSections.forEach(section => {
-        const sectionTop = section.offsetTop - 180; // adjust if needed
-        const sectionHeight = section.offsetHeight;
+// Initialize active product nav link based on current scroll position
+window.addEventListener('load', () => {
+    const productSections = document.querySelectorAll('.product-category');
 
-        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-            const currentId = `#${section.id}`;
+    window.addEventListener('scroll', () => {
+        let currentSection = '';
 
-            productNavLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === currentId) {
-                    link.classList.add('active');
-                }
-            });
+        productSections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+
+            if (window.scrollY >= sectionTop - 180 && window.scrollY < sectionTop + sectionHeight - 180) {
+                currentSection = `#${section.id}`;
+            }
+        });
+
+        productNavLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === currentSection) {
+                link.classList.add('active');
+            }
+        });
+    });
+});
+
+// Animation on Scroll
+function animateOnScroll() {
+    const elements = document.querySelectorAll('.value-card, .product-card, .contact-item');
+
+    elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.2;
+
+        if (elementPosition < screenPosition) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
         }
     });
 }
 
-// Call on load and scroll
-window.addEventListener('load', updateProductNavHighlight);
-window.addEventListener('scroll', updateProductNavHighlight);
+// Set initial state for animated elements
+document.querySelectorAll('.value-card, .product-card, .contact-item').forEach(element => {
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(20px)';
+    element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+});
+
+// Run animation check on load and scroll
+window.addEventListener('load', animateOnScroll);
+window.addEventListener('scroll', animateOnScroll);

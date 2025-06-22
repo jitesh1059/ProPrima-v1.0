@@ -1176,7 +1176,7 @@ footer {
     margin: 0 auto;
     padding: 0 15px;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 4rem;
     align-items: center;
     justify-content: space-between;
@@ -1199,6 +1199,16 @@ footer {
     font-weight: bold;
     text-decoration: none;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cta-container{
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
 
 /*  */
 /* Contact Page */
@@ -1416,7 +1426,7 @@ footer {
 
 @media (max-width: 480px) {
     .products-nav {
-        top: 50px;
+        top: 120px;
     }
 
     .products-nav ul {
@@ -1430,18 +1440,9 @@ footer {
 }
 
 /* Individual Background Color Setting */
-.wares-section,
-.general-equipments-section,
-.lab-furniture-section {
+.product-category {
     padding: 80px 20px;
     background-color: var(--accent);
-}
-
-.lab-equipments-section,
-.lab-chemicals-section,
-.minerals-section {
-    padding: 80px 20px;
-    background-color: var(--light);
 }
 
 .section-heading {
