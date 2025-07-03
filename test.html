@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<section class="product-category" id="wares">
+    <div class="container">
+        <h2 class="section-heading">Glass & Plasticwares</h2>
+        <div id="productGridWares" class="product-grid"></div>
+    </div>
+</section>
+
+<section class="product-category" id="lab-equipments">
+    <div class="container">
+        <h2 class="section-heading">Lab Equipments</h2>
+        <div id="productGridEquipments" class="product-grid"></div>
+    </div>
+</section>
+
+<div class="product-popup" id="productPopup">
+    <div class="popup-content">
+        <span class="close-popup" onclick="closePopup()">&times;</span>
+        <div id="popupImages"></div>
+        <h3 id="popupTitle"></h3>
+        <p id="popupDesc"></p>
+        <div id="popupSpecs" class="popup-specs"></div>
+    </div>
+</div>
+
+<script>
+    const productWares = [
+        {
+            name: "Bottles",
+            image: "images/bottles.jpg",
+            shortDescription: "Used for storing, mixing, or transporting liquids in laboratory settings.",
+            longDescription: "Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored.",
+            gallery: ["images/bottles.jpg", "images/bottles2.jpg", "images/bottles3.jpg"],
+            specs: {
+                "Types": "Standard, Angle, Y-Pattern",
+                "Pressure": "PN16 to PN250",
+                "Materials": "Carbon Steel, Stainless Steel",
+                "End Connections": "Flanged, Threaded, Socket Weld"
+            }
+        },
+        {
+            name: "Adapters",
+            image: "images/adapters.jpg",
+            shortDescription: "Connect different glassware components during lab setups.",
+            longDescription: "Adapters connect glassware components together, ensuring tight seals and smooth fluid transfer during experiments or distillation processes.",
+            gallery: ["images/adapters.jpg", "images/adapters2.jpg"],
+            specs: {
+                "Features": "Multiple joint sizes, High-heat resistance, Easy to clean"
+            }
+        },
+        {
+            name: "Beakers",
+            image: "images/beaker.jpg",
+            shortDescription: "Cylindrical vessels used for stirring, mixing, and heating liquids.",
+            longDescription: "Beakers are versatile lab tools with graduations for approximate measurement. Ideal for holding, mixing, and heating chemical solutions.",
+            gallery: ["images/beaker.jpg"],
+            specs: {}
+        }
+    ];
+
+    const productEquipments = [
+        {
+            name: "Ovens",
+            image: "images/ovens.jpeg",
+            shortDescription: "Drying, sterilizing, or heat-treating samples.",
+            longDescription: "Used for drying, sterilizing, or heat-treating samples at controlled temperatures in laboratory environments.",
+            gallery: ["images/ovens.jpeg"],
+            specs: {}
+        },
+        {
+            name: "Balances",
+            image: "images/balances.jpg",
+            shortDescription: "Measure mass of substances accurately.",
+            longDescription: "Precision instruments used to measure the mass of substances with high accuracy.",
+            gallery: ["images/balances.jpg"],
+            specs: {}
+        }
+    ];
+
+    function generateProducts(targetId, products) {
+        const container = document.getElementById(targetId);
+        container.innerHTML = products.map((product, index) => `
+    <div class="product-card" onclick="openPopup(${index}, '${targetId}')">
+      <div class="product-image">
+        <img src="${product.image}" alt="${product.name}">
+      </div>
+      <h3>${product.name}</h3>
+      <p>${product.shortDescription}</p>
+    </div>
+  `).join("");
+    }
+
+    generateProducts("productGridWares", productWares);
+    generateProducts("productGridEquipments", productEquipments);
+
+    function openPopup(index, gridId) {
+        const productList = gridId === "productGridWares" ? productWares : productEquipments;
+        const product = productList[index];
+        document.getElementById("popupTitle").innerText = product.name;
+        document.getElementById("popupDesc").innerText = product.longDescription;
+        document.getElementById("popupImages").innerHTML = product.gallery.map(img => `<img src="${img}" alt="${product.name}">`).join("");
+        document.getElementById("popupSpecs").innerHTML = Object.entries(product.specs).map(([key, val]) => `<p><strong>${key}:</strong> ${val}</p>`).join("");
+        document.getElementById("productPopup").classList.add("show");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closePopup() {
+        document.getElementById("productPopup").classList.remove("show");
+        document.body.style.overflow = "auto";
+    }
+</script>
+</html>

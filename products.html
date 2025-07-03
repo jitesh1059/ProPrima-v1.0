@@ -14,8 +14,65 @@
     <!-- Slider JS CDN -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    
+
 </head>
+
+<!-- Script to load pop-up dynamically -->
+<script>
+    function openPopup(card) {
+        const title = card.getAttribute('data-title');
+        const desc = card.getAttribute('data-description');
+        const images = card.getAttribute('data-images').split(',');
+        const features = card.getAttribute('data-features').split('|');
+
+        document.getElementById('popupTitle').innerText = title;
+        document.getElementById('popupDesc').innerText = desc;
+
+        const imgContainer = document.getElementById('popupImages');
+        imgContainer.innerHTML = images.map(img =>
+            `<img src="${img.trim()}" alt="${title}" onclick="openLightbox('${img.trim()}')">`
+        ).join('');
+
+        const featureList = document.getElementById('popupFeatures');
+        featureList.innerHTML = features.map(f => {
+            const [label, value] = f.split(':');
+            return `<p><strong>${label.trim()}:</strong> ${value.trim()}</p>`;
+        }).join('');
+
+
+        const overlay = document.getElementById('popupOverlay');
+        const box = overlay.querySelector('.popup-box');
+
+        overlay.classList.add('show');
+        setTimeout(() => box.classList.add('show'), 10);
+    }
+
+    function closePopup() {
+        const overlay = document.getElementById('popupOverlay');
+        const box = overlay.querySelector('.popup-box');
+        box.classList.remove('show');
+        setTimeout(() => overlay.classList.remove('show'), 300);
+    }
+
+    function clickOutsideClose(event) {
+        const box = document.querySelector('.popup-box');
+        if (!box.contains(event.target)) {
+            closePopup();
+        }
+    }
+
+    function openLightbox(imgSrc) {
+        const lightbox = document.getElementById('lightbox');
+        const img = document.getElementById('lightboxImg');
+        img.src = imgSrc;
+        lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+    }
+</script>
+
 
 
 <body>
@@ -78,24 +135,32 @@
             <h2 class="section-heading">Glass & Plasticwares</h2>
             <div class="product-grid">
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Bottles"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/bottles.jpg" alt="Bottles">
                     </div>
                     <h3>Bottles</h3>
-                    <p>Used for storing, mixing, or transporting liquids in laboratory settings, often with secure caps.
-                    </p>
+                    <p>Used for storing, mixing, or transporting liquids in laboratory settings.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Adapters"
+                    data-description="Adapters connect glassware components together, ensuring tight seals and smooth fluid transfer during experiments or distillation processes."
+                    data-images="images/adapters.jpg, images/adapters2.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/adapters.jpg" alt="Adapters">
                     </div>
                     <h3>Adapters</h3>
-                    <p>Connect different glassware components, allowing transitions between sizes or joint types.</p>
+                    <p>Connect different glassware components during lab setups.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Beakers"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/beaker.jpg" alt="Beakers">
                     </div>
@@ -103,7 +168,10 @@
                     <p>Cylindrical glass vessels with a flat bottom, used for stirring, mixing, and heating liquids.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Funnels"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/funnels.jpg" alt="Funnels">
                     </div>
@@ -111,7 +179,10 @@
                     <p> Used to channel liquids or fine-grained substances into containers with small openings.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Containers"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/containers.jpg" alt="Containers">
                     </div>
@@ -119,7 +190,10 @@
                     <p>General-purpose vessels for holding solids, liquids, or samples in the lab.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Condensers"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/condensers.jpg" alt="Condensers">
                     </div>
@@ -127,7 +201,10 @@
                     <p>Cool hot vapors back into liquid form during distillation or reflux processes.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Desiccators"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/desiccators.jpg" alt="Desiccators">
                     </div>
@@ -135,7 +212,10 @@
                     <p>Airtight chambers used to keep samples dry by removing moisture with desiccants.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Joints"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/joints.jpeg" alt="Joints">
                     </div>
@@ -143,7 +223,10 @@
                     <p>Precision-ground glass connectors that join lab glassware pieces securely.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Stopcocks"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/stopcocks.jpeg" alt="Stopcocks">
                     </div>
@@ -151,7 +234,10 @@
                     <p>Valve devices used to control the flow of liquids or gases in tubing or glassware.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Racks"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/racks.jpeg" alt="Racks">
                     </div>
@@ -167,7 +253,10 @@
                     <p>Tools and containers used for preparing, storing, or transferring lab samples.</p>
                 </div> -->
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Thermometers"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/thermometer.jpg" alt="Thermometers">
                     </div>
@@ -175,7 +264,10 @@
                     <p>Instruments used to measure temperature, often in Celsius or Fahrenheit, for lab experiments.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="SVL Glasswarewith Screwthread Joints"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/svl_glassware.jpeg" alt="SVL Glassware with Screwthread Joints">
                     </div>
@@ -183,7 +275,10 @@
                     <p>Glassware featuring threaded joints for secure, leak-proof connections without ground glass.</p>
                 </div>
 
-                <div class="product-card" style="max-width: 370px;">
+                <div class="product-card" onclick="openPopup(this)" data-title="Stirrers"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld" style="max-width: 370px;">
                     <div class="product-image">
                         <img src="images/stirrer.jpg" alt="Stirrers">
                     </div>
@@ -201,7 +296,10 @@
             <h2 class="section-heading">Lab Equipments</h2>
             <div class="product-grid">
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Ovens"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/ovens.jpeg" alt="Ovens">
                     </div>
@@ -210,7 +308,10 @@
                         environments.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Chiller and Freezer"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/chiller_freezer.jpg" alt="Chiller and Freezer">
                     </div>
@@ -218,7 +319,10 @@
                     <p>Equipment for preserving samples or reagents by maintaining low or sub-zero temperatures.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Balances"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/balances.jpg" alt="Balances">
                     </div>
@@ -226,7 +330,10 @@
                     <p>Precision instruments used to measure the mass of substances with high accuracy.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Test Sieves"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/test_sieves.jpeg" alt="Test Sieves">
                     </div>
@@ -234,7 +341,10 @@
                     <p>Mesh-based tools used to separate particles by size for material analysis and grading.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Hotplate & Stirrers"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/hotplate_stirrer.jpeg" alt="Hotplate & Stirrers">
                     </div>
@@ -242,7 +352,10 @@
                     <p>Combine surface heating with magnetic stirring to mix and heat solutions simultaneously.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Viscometers"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/viscometer.jpg" alt="Viscometers">
                     </div>
@@ -268,7 +381,10 @@
             <h2 class="section-heading">General Equipments</h2>
             <div class="product-grid">
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Temperature Control Device"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/tcd.jpg" alt="Temperature Control Device">
                     </div>
@@ -277,7 +393,10 @@
                         baths, incubators, chillers).</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Centrifuge"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/centrifuge.jpg" alt="Centrifuge">
                     </div>
@@ -345,7 +464,10 @@
             <h2 class="section-heading">Lab Furniture and Fumehood Systems</h2>
             <div class="product-grid">
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Lab Furniture"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/lab_furniture.jpeg" alt="Lab Furnitures">
                     </div>
@@ -353,20 +475,28 @@
                     <p>Durable and ergonomic furniture designed to support safe and efficient laboratory workflows.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Fumehood"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/fumehood.jpg" alt="Fumehood">
                     </div>
                     <h3>Fumehood System</h3>
-                    <p>A ventilated enclosure that safely removes hazardous fumes, vapors, and dust during experiments.</p>
+                    <p>A ventilated enclosure that safely removes hazardous fumes, vapors, and dust during experiments.
+                    </p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" onclick="openPopup(this)" data-title="Chairs"
+                    data-description="Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored."
+                    data-images="images/bottles.jpg,images/bottles2.jpg,images/bottles3.jpg"
+                    data-features="Types: Standard, Angle, Y-Pattern|Pressure: PN16 to PN250|Materials: Carbon Steel, Stainless Steel|End Connections: Flanged, Threaded, Socket Weld">
                     <div class="product-image">
                         <img src="images/chairs.jpeg" alt="Chairs">
                     </div>
                     <h3>Chairs</h3>
-                    <p>Adjustable, chemical-resistant lab chairs designed for comfort and posture support in laboratory environments.</p>
+                    <p>Adjustable, chemical-resistant lab chairs designed for comfort and posture support in laboratory
+                        environments.</p>
                 </div>
 
             </div>
@@ -384,7 +514,8 @@
                         <img src="images/quartz.jpg" alt="Quartz">
                     </div>
                     <h3>Quartz</h3>
-                    <p>A hard, crystalline mineral commonly used in lab equipment and glassware for its chemical resistance and thermal stability.</p>
+                    <p>A hard, crystalline mineral commonly used in lab equipment and glassware for its chemical
+                        resistance and thermal stability.</p>
                 </div>
 
                 <div class="product-card">
@@ -392,7 +523,8 @@
                         <img src="images/bentonite.jpeg" alt="Bentonite">
                     </div>
                     <h3>Bentonite</h3>
-                    <p>A naturally occurring clay with high absorbent properties, often used in filtration, purification, and binding applications.</p>
+                    <p>A naturally occurring clay with high absorbent properties, often used in filtration,
+                        purification, and binding applications.</p>
                 </div>
 
                 <div class="product-card">
@@ -400,12 +532,29 @@
                         <img src="images/pigments.jpg" alt="Pigments">
                     </div>
                     <h3>Pigments</h3>
-                    <p>Finely ground substances used to impart color in coatings, plastics, and other chemical formulations.</p>
+                    <p>Finely ground substances used to impart color in coatings, plastics, and other chemical
+                        formulations.</p>
                 </div>
 
             </div>
         </div>
     </section>
+
+    <!-- Modal Overlay -->
+    <div id="popupOverlay" class="popup-overlay" onclick="clickOutsideClose(event)">
+        <div class="popup-box">
+            <button class="popup-close" onclick="closePopup()">✕</button>
+            <h2 id="popupTitle"></h2>
+            <div class="popup-images" id="popupImages"></div>
+            <div class="popup-desc" id="popupDesc"></div>
+            <ul class="popup-list" id="popupFeatures"></ul>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightboxImg" src="" alt="Zoomed Image">
+    </div>
 
 
     <!-- Footer -->
@@ -451,4 +600,5 @@
     </footer>
 </body>
 <script src="js/main.js"></script>
+
 </html>

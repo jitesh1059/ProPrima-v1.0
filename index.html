@@ -13,6 +13,92 @@
         rel="stylesheet">
 </head>
 
+<!-- Recent Projects Carousel -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const timelineData = {
+            "2010": [
+                {
+                    img: "images/history-2010.jpg",
+                    title: "Redwoods Media Becomes Vidyard",
+                    desc: "Michael Litt and Devon Galloway found Redwoods Media, the first video production company to offer video hosting, analytics, and performance guarantees."
+                },
+                {
+                    img: "images/extra-2010.jpg",
+                    title: "Early Demo Day Success",
+                    desc: "The team showcases their idea at a university startup event, gaining interest from early investors."
+                }
+            ],
+            "2011": [
+                {
+                    img: "images/history-2011.jpg",
+                    title: "Seed Funding Secured",
+                    desc: "Vidyard raises seed capital from prominent tech investors to scale their video analytics platform."
+                }
+            ],
+            "2014": [
+                {
+                    img: "images/history-2014.jpg",
+                    title: "International Expansion",
+                    desc: "Vidyard opens offices in the US and UK to support its growing international customer base."
+                }
+            ],
+            "2020": [
+                {
+                    img: "images/history-2020.jpg",
+                    title: "Video in the Remote Era",
+                    desc: "The global shift to remote work sees a spike in video usage, propelling Vidyard’s growth significantly."
+                }
+            ]
+        };
+
+        let years = Object.keys(timelineData);
+        let currentYearIndex = 0;
+        let inactivityTimer;
+
+        function showProjects(year) {
+            const container = document.getElementById("timelineDisplay");
+            container.innerHTML = timelineData[year].map(project => `
+      <div class="project-block">
+        <img src="${project.img}" alt="${project.title}">
+        <h3>${project.title}</h3>
+        <p>${project.desc}</p>
+      </div>
+    `).join("");
+
+            document.querySelectorAll('.year-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.year-btn[data-year="${year}"]`).classList.add('active');
+        }
+
+        function advanceYear() {
+            currentYearIndex = (currentYearIndex + 1) % years.length;
+            showProjects(years[currentYearIndex]);
+        }
+
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(advanceYear, 10000);
+        }
+
+        // Initial load
+        showProjects(years[currentYearIndex]);
+        resetInactivityTimer();
+
+        document.querySelectorAll('.year-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const year = btn.getAttribute('data-year');
+                currentYearIndex = years.indexOf(year);
+                showProjects(year);
+                resetInactivityTimer();
+            });
+        });
+
+        document.addEventListener('click', resetInactivityTimer);
+        document.addEventListener('keydown', resetInactivityTimer);
+    });
+</script>
+
+
 <body>
     <!-- Header -->
     <header>
@@ -92,131 +178,169 @@
                 </p>
             </div>
             <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="images/pic.jpg" class="product-image">
-                        <div class="product-badge">For Sale</div>
+                <a href="products.html#wares" class="product-card-link">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/pic.jpg" class="product-image" alt="Glass and Plasticwares">
+                            <div class="product-badge">For Sale</div>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Glass and Plasticwares</h3>
+                        </div>
                     </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Glass and Plasticwares</h3>
+                </a>
+                <a href="products.html#lab-equipments" class="product-card-link">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/pic1.jpg" class="product-image">
+                            <div class="product-badge">For Sale</div>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Lab Equipments</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="images/pic1.jpg" class="product-image">
-                        <div class="product-badge">For Sale</div>
+                </a>
+                <a href="products.html#general-equipments" class="product-card-link">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/pic2.jpg" class="product-image">
+                            <div class="product-badge">For Sale</div>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">General Equipments</h3>
+                        </div>
                     </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Lab Equipments</h3>
-
+                </a>
+                <a href="products.html#lab-chemicals" class="product-card-link">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/pic5.jpg" class="product-image">
+                            <div class="product-badge">For Sale</div>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Lab Chemicals</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="images/pic2.jpg" class="product-image">
-                        <div class="product-badge">For Sale</div>
+                </a>
+                <a href="products.html#lab-furniture" class="product-card-link">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/pic4.jpg" class="product-image">
+                            <div class="product-badge">For Sale</div>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title" style="font-size: 1rem;">Lab Furniture & Fumehood Systems</h3>
+                        </div>
                     </div>
-                    <div class="product-content">
-                        <h3 class="product-title">General Equipments</h3>
+                </a>
+                <a href="products.html#minerals" class="product-card-link">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="images/pic5.jpg" class="product-image">
+                            <div class="product-badge">For Sale</div>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Minerals</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="images/pic3.jpg" class="product-image">
-                        <div class="product-badge">For Sale</div>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Lab Furniture</h3>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="images/pic4.jpg" class="product-image">
-                        <div class="product-badge">For Sale</div>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Consumables</h3>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="images/pic5.jpg" class="product-image">
-                        <div class="product-badge">For Sale</div>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Chemicals</h3>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
     <section class="contact">
         <div class="container">
             <div class="section-title">
                 <h2>Contact Us</h2>
                 <p>Have questions or ready to get started? Reach out to our team today.</p>
             </div>
+
             <div class="contact-container">
+                <!-- Left: Contact Info -->
                 <div class="contact-info">
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i href="#" class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="contact-details">
                             <h4>Our Location</h4>
                             <p>
-                            <ul>
-                                P-03A-12A, Impian Meridian Commerce,
-                                <br>
-                                Jalan Subang 1, USJ 1,
-                                <br>
-                                47620 Subang Jaya,
-                                <br>
+                                P-03A-12A, Impian Meridian Commerce,<br>
+                                Jalan Subang 1, USJ 1,<br>
+                                47620 Subang Jaya,<br>
                                 Selangor Darul Ehsan.
-                            </ul>
                             </p>
                         </div>
                     </div>
+
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i href="#" class="fas fa-phone-alt"></i>
+                            <i class="fas fa-phone-alt"></i>
                         </div>
                         <div class="contact-details">
                             <h4>Phone Number</h4>
-                            <p>
-                            <ul>+603-8011 8989</ul>
-                            <ul>+603-8011 6446</ul>
-                            </p>
+                            <p>+603-8011 8989<br>+603-8011 6446</p>
                         </div>
                     </div>
+
                     <div class="contact-item">
                         <div class="contact-icon">
-                            <i href="#" class="fas fa-envelope"></i>
+                            <i class="fas fa-envelope"></i>
                         </div>
                         <div class="contact-details">
                             <h4>Email Address</h4>
-                            <p>
-                            <ul>proprima@gmail.com</ul>
-                            </p>
+                            <p>proprima@gmail.com</p>
                         </div>
                     </div>
+
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="contact-details">
                             <h4>Working Hours</h4>
-                            <p>
-                            <ul>Monday - Friday: 9am - 6pm<br>Saturday: 10am - 4pm</ul>
-                            </p>
+                            <p>Monday - Friday: 9am - 6pm<br>Saturday: 10am - 4pm</p>
                         </div>
                     </div>
+                </div>
+
+                <!-- Right: Embedded Google Map -->
+                <div class="contact-map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.9934180341023!2d101.59394911526504!3d3.0632204977581114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4bb5e1b89fdf%3A0x6b3b02b7b3f4fdd2!2sImpian%20Meridian!5e0!3m2!1sen!2smy!4v1626528944014!5m2!1sen!2smy"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Recent Projects -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Recent Projects</h2>
+                <p>
+                    A journey of milestones, innovation, and progress. Explore how we grew year by year, expanding our
+                    capabilities and global impact.
+                </p>
+            </div>
+            <div class="timeline-content">
+                <div class="timeline-years">
+                    <button class="year-btn active" data-year="2010">2010</button>
+                    <button class="year-btn" data-year="2011">2011</button>
+                    <button class="year-btn" data-year="2014">2014</button>
+                    <button class="year-btn" data-year="2020">2020</button>
+                </div>
+                <div class="timeline-display" id="timelineDisplay">
+                    <!-- Dynamic content will be injected here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
     <!-- Footer -->
     <footer>

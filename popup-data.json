@@ -1,0 +1,42 @@
+{
+    "bottles": {
+        "title": "Bottles",
+        "description": "Bottles are essential lab containers used for various chemical storage needs. They come in multiple materials such as glass and plastic to ensure compatibility with the substances stored.",
+        "images": [
+            "images/bottles.jpg",
+            "images/bottles2.jpg",
+            "images/bottles3.jpg"
+        ],
+        "features": [
+            "Types: Standard, Angle, Y-Pattern",
+            "Pressure: PN16 to PN250",
+            "Materials: Carbon Steel, Stainless Steel",
+            "End Connections: Flanged, Threaded, Socket Weld"
+        ]
+    },
+    "adapters": {
+        "title": "Adapters",
+        "description": "Adapters connect glassware components together, ensuring tight seals and smooth fluid transfer during experiments or distillation processes.",
+        "images": [
+            "images/adapters.jpg",
+            "images/adapters2.jpg"
+        ],
+        "features": [
+            "Joint Sizes: Multiple options available",
+            "Material: Borosilicate Glass",
+            "Heat Resistance: High-temperature rated"
+        ]
+    },
+    "beakers": {
+        "title": "Beakers",
+        "description": "Cylindrical glass vessels with a flat bottom, used for stirring, mixing, and heating liquids.",
+        "images": [
+            "images/beaker.jpg"
+        ],
+        "features": [
+            "Capacity: 50ml to 2000ml",
+            "Graduated Markings: Yes",
+            "Material: Borosilicate Glass"
+        ]
+    }
+}
