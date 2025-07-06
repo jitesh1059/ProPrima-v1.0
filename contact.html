@@ -60,7 +60,7 @@
             <!-- Contact Form -->
             <div class="contact-form-container">
                 <h2 class="contact-title">Get in Touch</h2>
-                <form class="contact-form" action="#" method="POST">
+                <form id="myForm" class="contact-form">
                     <div class="form-group">
                         <input type="text" name="name" required>
                         <label>Name</label>
@@ -81,6 +81,17 @@
 
                     <button type="submit" class="contact-submit">Send Message</button>
                 </form>
+
+                <script>
+                    const form = document.getElementById('myForm');
+
+                    document.addEventListener("DOMContentLoaded", () => {
+                        form.addEventListener('submit', e => {
+                            alert("Message sent successfully!");
+                            form.reset();
+                        })
+                    });
+                </script>
             </div>
 
             <!-- Map -->

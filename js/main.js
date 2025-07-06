@@ -115,6 +115,25 @@ const labChemSwiper = new Swiper('.labChemSwiper', {
     }
 });
 
+// Swiper for Minerals
+var mineralsSwiper = new Swiper(".mineralsSwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+        768: {
+            slidesPerView: 2,
+        },
+        1024: {
+            slidesPerView: 3,
+        },
+    },
+});
+
+
 // Enhanced Products Navigation
 const productNavLinks = document.querySelectorAll('.products-nav ul li a');
 const productSections = document.querySelectorAll('.product-category');
@@ -221,3 +240,8 @@ document.querySelectorAll('.value-card, .product-card, .contact-item').forEach(e
 // Run animation check on load and scroll
 window.addEventListener('load', animateOnScroll);
 window.addEventListener('scroll', animateOnScroll);
+
+// 
+// Contact Page
+// 
+

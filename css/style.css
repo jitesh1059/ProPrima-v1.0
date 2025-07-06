@@ -430,7 +430,7 @@ header {
     width: 370px;
     background-color: #ddd;
     position: relative;
-    /* object-fit: cover; */
+    object-fit: contain;
 }
 
 .product-badge {
@@ -1588,9 +1588,33 @@ footer {
 }
 
 /* Individual Background Color Setting */
+#wares {
+    background-color: var(--accent);
+}
+
+#lab-equipments {
+    background-color: var(--light);
+}
+
+#general-equipments {
+    background-color: var(--accent);
+}
+
+#chemicals {
+    background-color: var(--light);
+}
+
+#lab-furniture {
+    background-color:var(--accent);
+}
+
+#minerals {
+    background-color: var(--light);
+}
+
 .product-category {
     padding: 80px 20px;
-    background-color: var(--accent);
+    /* background-color: var(--accent); */
 }
 
 .section-heading {
@@ -1742,7 +1766,7 @@ footer {
 .popup-images img {
     width: 100%;
     height: 180px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 10px;
     cursor: pointer;
     border: 2px solid #ccc;
@@ -1872,6 +1896,38 @@ footer {
 }
 
 .chemical-card p {
+    font-size: 0.95rem;
+    color: var(--dark);
+}
+
+.mineral-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+}
+
+.mineral-card:hover {
+    transform: translateY(-5px);
+}
+
+.mineral-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.mineral-card h3 {
+    font-size: 1.2rem;
+    color: var(--dark_blue);
+    margin-bottom: 10px;
+}
+
+.mineral-card p {
     font-size: 0.95rem;
     color: var(--dark);
 }
