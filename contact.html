@@ -60,7 +60,7 @@
             <!-- Contact Form -->
             <div class="contact-form-container">
                 <h2 class="contact-title">Get in Touch</h2>
-                <form id="myForm" class="contact-form">
+                <form id="myForm" class="contact-form" action="contact.php" method="POST">
                     <div class="form-group">
                         <input type="text" name="name" required>
                         <label>Name</label>
@@ -78,21 +78,43 @@
                         <label>Message</label>
                         <i class="fas fa-comment-dots"></i>
                     </div>
-
                     <button type="submit" class="contact-submit">Send Message</button>
                 </form>
-
-                <script>
-                    const form = document.getElementById('myForm');
-
-                    document.addEventListener("DOMContentLoaded", () => {
-                        form.addEventListener('submit', e => {
-                            alert("Message sent successfully!");
-                            form.reset();
-                        })
-                    });
-                </script>
+                <div class="status" id="responseMessage"></div>
             </div>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const form = document.getElementById("myForm");
+                    const responseBox = document.getElementById("responseMessage");
+
+                    form.addEventListener("submit", function (e) {
+                        e.preventDefault();
+                        const formData = new FormData(form);
+
+                        fetch("contact.php", {
+                            method: "POST",
+                            body: formData
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.success) {
+                                    responseBox.textContent = "✅ Message sent successfully!";
+                                    responseBox.style.color = "green";
+                                    form.reset();
+                                } else {
+                                    responseBox.textContent = "❌ " + data.error;
+                                    responseBox.style.color = "red";
+                                }
+                            })
+                            .catch(error => {
+                                responseBox.textContent = "❌ Something went wrong.";
+                                responseBox.style.color = "red";
+                                console.error(error);
+                            });
+                    });
+                });
+            </script>
 
             <!-- Map -->
             <div class="contact-map">
@@ -148,7 +170,6 @@
             </div>
         </div>
     </footer>
-    <script src="js/main.js"></script>
 </body>
 
 </html>
