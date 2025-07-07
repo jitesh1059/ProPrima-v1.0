@@ -58,13 +58,11 @@
 
         function showProjects(year) {
             const container = document.getElementById("timelineDisplay");
-            container.innerHTML = timelineData[year].map(project => `
-      <div class="project-block">
-        <img src="${project.img}" alt="${project.title}">
-        <h3>${project.title}</h3>
-        <p>${project.desc}</p>
-      </div>
-    `).join("");
+            container.innerHTML = timelineData[year].map(project => `<div class="project-block">
+                                    <img src="${project.img}" alt="${project.title}">
+                                    <h3>${project.title}</h3>
+                                    <p>${project.desc}</p>
+                                </div>`).join("");
 
             document.querySelectorAll('.year-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector(`.year-btn[data-year="${year}"]`).classList.add('active');
@@ -182,7 +180,6 @@
                     <div class="product-card">
                         <div class="product-image">
                             <img src="images/pic.jpg" class="product-image" alt="Glass and Plasticwares">
-                            <div class="product-badge">For Sale</div>
                         </div>
                         <div class="product-content">
                             <h3 class="product-title">Glass and Plasticwares</h3>
@@ -193,7 +190,6 @@
                     <div class="product-card">
                         <div class="product-image">
                             <img src="images/pic1.jpg" class="product-image">
-                            <div class="product-badge">For Sale</div>
                         </div>
                         <div class="product-content">
                             <h3 class="product-title">Lab Equipments</h3>
@@ -204,7 +200,6 @@
                     <div class="product-card">
                         <div class="product-image">
                             <img src="images/pic2.jpg" class="product-image">
-                            <div class="product-badge">For Sale</div>
                         </div>
                         <div class="product-content">
                             <h3 class="product-title">General Equipments</h3>
@@ -215,7 +210,6 @@
                     <div class="product-card">
                         <div class="product-image">
                             <img src="images/pic3.png" class="product-image">
-                            <div class="product-badge">For Sale</div>
                         </div>
                         <div class="product-content">
                             <h3 class="product-title">Lab Chemicals</h3>
@@ -226,7 +220,6 @@
                     <div class="product-card">
                         <div class="product-image">
                             <img src="images/pic4.png" class="product-image">
-                            <div class="product-badge">For Sale</div>
                         </div>
                         <div class="product-content">
                             <h3 class="product-title" style="font-size: 1rem;">Lab Furniture & Fumehood Systems</h3>
@@ -237,7 +230,6 @@
                     <div class="product-card">
                         <div class="product-image">
                             <img src="images/pic5.png" class="product-image">
-                            <div class="product-badge">For Sale</div>
                         </div>
                         <div class="product-content">
                             <h3 class="product-title">Minerals</h3>

@@ -2,16 +2,35 @@
 /* 1. Root Variables & Reset */
 /* ------------------------- */
 :root {
-    --primary: #00809D;
-    --dark_blue: #0B1D51;
-    --secondary: #FF7601;
-    --accent: #FCECDD;
-    --light: #f9f9f9;
-    --dark: #222222;
-    --gray: #7d7d7d;
-    --light-gray: #e3e3e3;
+    /* New Color Palette */
+    --primary: #FE7743;         /* Orange - Primary brand color */
+    --dark: #273F4F;            /* Dark Blue - For text and dark elements */
+    --highlight: #FF9C6E;       /* Lighter Orange - For highlights */
+    --dark_blue: #2B4A5D;       /* Slightly lighter Dark Blue - For accents */
+    --secondary: #447D9B;       /* Medium Blue - Secondary brand color */
+    --accent: #FFD4B8;          /* Soft Peach - Brighter and more harmonious accent */
+    --light: #F8FAFC;           /* Very Light Blue - Page backgrounds */
+    --gray: #6F6F6F;            /* Medium Gray - Secondary text */
+    --light-gray: #E8ECEF;      /* Very Light Blue-Gray - Borders/shadows */
+    
+    /* Neutral Colors */
+    --white: #FFFFFF;
+    --black: #000000;
+    --dark-mid: #3A4D5C;
+    --dark-gray: #4A5D6B;
+    --text-gray: #5A6D7B;
+    --mid-gray: #8A9AA8;
+    --text-light: #BBC7D1;
+    
+    /* State Colors */
+    --secondary-hover: #3A6D87;  /* Darker Blue - Hover states */
+    --popup-bg: #E8F2F8;         /* Light Blue - Popup background */
+    --frame-border: #C4D3DF;     /* Blue-Gray - Borders */
+    
+    /* Effects */
     --soft-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     --transition: all 0.3s ease;
+    --black-rgb: 0,0,0;
 }
 
 * {
@@ -20,10 +39,11 @@
     box-sizing: border-box;
     font-family: 'IBM Plex Sans', sans-serif;
     scroll-behavior: smooth;
+    color: inherit;
 }
 
 body {
-    background-color: white;
+    background-color: var(--white);
     color: var(--dark);
     line-height: 1.6;
 }
@@ -44,6 +64,7 @@ body {
     padding: 12px 25px;
     background: var(--light-gray);
     color: var(--dark_blue);
+    box-shadow: var(--soft-shadow);
     border-radius: 5px;
     font-weight: bold;
     text-decoration: none;
@@ -51,12 +72,11 @@ body {
     transition: var(--transition);
     border: none;
     cursor: pointer;
-    box-shadow: var(--soft-shadow);
 }
 
 .btn:hover {
     background: var(--dark_blue);
-    color: white;
+    color: var(--white);
     transform: translateY(-3px);
 }
 
@@ -65,7 +85,7 @@ body {
 }
 
 .btn-secondary:hover {
-    background: #E38E49;
+    background: var(--secondary-hover);
 }
 
 /* ------------------------- */
@@ -209,7 +229,7 @@ header {
     right: -250px;
     width: 250px;
     height: 100vh;
-    background: white;
+    background: var(--white);
     box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
     padding-top: 120px;
     transition: right 0.3s ease;
@@ -360,7 +380,7 @@ header {
     width: 10px;
     height: 10px;
     margin: 0 5px;
-    background: #bbb;
+    background: var(--text-light);
     border-radius: 50%;
     cursor: pointer;
     transition: background 0.3s;
@@ -413,7 +433,7 @@ header {
 }
 
 .product-card {
-    background: white;
+    background: var(--white);
     border-radius: 15px;
     overflow: hidden;
     box-shadow: var(--soft-shadow);
@@ -438,7 +458,7 @@ header {
     top: 15px;
     right: 15px;
     background: var(--secondary);
-    color: white;
+    color: var(--white);
     padding: 5px 15px;
     border-radius: 20px;
     font-weight: 600;
@@ -575,7 +595,7 @@ header {
     /* text-transform: uppercase; */
     /* letter-spacing: 2px; */
     font-size: 0.85rem;
-    color: #888;
+    color: var(--mid-gray);
     margin: 0 0 10px;
 }
 
@@ -611,7 +631,7 @@ header {
     padding: 10px 16px;
     font-size: 0.9rem;
     cursor: pointer;
-    color: #444;
+    color: var(--dark-gray);
     border-radius: 6px;
     transition: background 0.2s, color 0.2s;
 }
@@ -643,12 +663,12 @@ header {
 .timeline-display h3 {
     font-size: 1.3rem;
     margin-bottom: 10px;
-    color: #1a1a1a;
+    color: var(--dark);
 }
 
 .timeline-display p {
     font-size: 0.95rem;
-    color: #555;
+    color: var(--text-gray);
     line-height: 1.6;
 }
 
@@ -668,7 +688,7 @@ header {
 /* Footer */
 footer {
     background: var(--dark);
-    color: white;
+    color: var(--white);
     padding: 70px 0 0;
 }
 
@@ -707,7 +727,7 @@ footer {
 }
 
 .footer-links a {
-    color: #bbb;
+    color: var(--text-light);
     text-decoration: none;
     transition: var(--transition);
 }
@@ -731,7 +751,7 @@ footer {
     height: 40px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
-    color: white;
+    background: rgba(var(--white), 0.1);
     transition: var(--transition);
 }
 
@@ -745,7 +765,7 @@ footer {
     padding: 25px 0;
     margin-top: 60px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: #bbb;
+    color: var(--text-light);
     font-size: 0.9rem;
 }
 
@@ -1246,8 +1266,9 @@ footer {
 }
 
 .certificate-frame {
-    background: #fdfdfd;
-    border: 2px solid #d1bfa3;
+    background: var(--white);
+    border-color: var(--frame-border);
+    border: 2px solid;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     padding: 20px;
     border-radius: 12px;
@@ -1260,20 +1281,21 @@ footer {
     max-width: 350px;
     height: auto;
     border: 1px solid #ccc;
+    border-color: var(--light-gray);
     border-radius: 6px;
     margin-bottom: 15px;
 }
 
 .certificate-label h4 {
     font-size: 1.2rem;
-    color: #333;
+    color: var(--dark-mid);
     font-family: "Georgia", serif;
     margin-bottom: 4px;
 }
 
 .certificate-label p {
     font-size: 1rem;
-    color: #666;
+    color: var(--gray);
     font-style: italic;
     font-family: "Georgia", serif;
 }
@@ -1418,7 +1440,8 @@ footer {
     width: 100%;
     padding: 12px 40px 12px 12px;
     font-size: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid;
+    border-color: var(--light-gray);
     border-radius: 8px;
     outline: none;
     resize: none;
@@ -1535,6 +1558,7 @@ footer {
     background-color: var(--primary);
     color: white;
     font-weight: bold;
+
 }
 
 /* 
@@ -1588,26 +1612,13 @@ footer {
 }
 
 /* Individual Background Color Setting */
-#wares {
-    background-color: var(--accent);
-}
-
-#lab-equipments {
-    background-color: var(--light);
-}
-
-#general-equipments {
-    background-color: var(--accent);
-}
-
-#chemicals {
-    background-color: var(--light);
-}
-
+#wares, 
+#general-equipments, 
 #lab-furniture {
-    background-color:var(--accent);
+    background-color: var(--accent);
 }
-
+#lab-equipments, 
+#chemicals, 
 #minerals {
     background-color: var(--light);
 }
@@ -1641,22 +1652,6 @@ footer {
     gap: 2rem;
 }
 
-
-.product-card:hover {
-    transform: translateY(-5px);
-}
-
-.product-card h3 {
-    font-size: 1.2rem;
-    color: var(--dark_blue);
-    margin-bottom: 10px;
-}
-
-.product-card p {
-    font-size: 0.95rem;
-    color: var(--dark);
-}
-
 .product-card {
     flex: 1 1 300px;
     background: #fff;
@@ -1670,7 +1665,8 @@ footer {
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .product-image {
@@ -1725,7 +1721,7 @@ footer {
 
 /* Popup Modal */
 .popup-box {
-    background: #e7f2ff;
+    background: var(--popup-bg);
     width: 90%;
     max-width: 900px;
     padding: 30px;
@@ -1792,7 +1788,7 @@ footer {
 .popup-list p {
     margin: 6px 0;
     font-size: 1rem;
-    color: #333;
+    color: var(--dark-mid);
 }
 
 

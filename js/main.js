@@ -101,6 +101,7 @@ const certSwiper = new Swiper('.certificates-slider', {
 const labChemSwiper = new Swiper('.labChemSwiper', {
     slidesPerView: 1,
     spaceBetween: 20,
+    loop: true,
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -119,6 +120,7 @@ const labChemSwiper = new Swiper('.labChemSwiper', {
 var mineralsSwiper = new Swiper(".mineralsSwiper", {
     slidesPerView: 1,
     spaceBetween: 20,
+    loop: true,
     navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
@@ -217,7 +219,7 @@ window.addEventListener('load', () => {
 
 // Animation on Scroll
 function animateOnScroll() {
-    const elements = document.querySelectorAll('.value-card, .product-card, .contact-item');
+    const elements = document.querySelectorAll('.value-card, .contact-item');
 
     elements.forEach(element => {
         const elementPosition = element.getBoundingClientRect().top;
@@ -231,7 +233,7 @@ function animateOnScroll() {
 }
 
 // Set initial state for animated elements
-document.querySelectorAll('.value-card, .product-card, .contact-item').forEach(element => {
+document.querySelectorAll('.value-card, .contact-item').forEach(element => {
     element.style.opacity = '0';
     element.style.transform = 'translateY(20px)';
     element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
