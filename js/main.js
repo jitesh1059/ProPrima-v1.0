@@ -56,6 +56,27 @@ window.addEventListener('scroll', () => {
     });
 });
 
+// 
+// Index Page
+//
+const recentProjectSwiper = new Swiper('.recent-projects-swiper', {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 20,
+    slidesPerView: 1,
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+        768: { slidesPerView: 1 },
+        1024: { slidesPerView: 2 }
+    }
+});
 
 // 
 // About Us Page
@@ -243,7 +264,7 @@ document.querySelectorAll('.value-card, .contact-item').forEach(element => {
 window.addEventListener('load', animateOnScroll);
 window.addEventListener('scroll', animateOnScroll);
 
-// 
+//
 // Contact Page
 // 
 

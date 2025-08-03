@@ -3,35 +3,36 @@
 /* ------------------------- */
 :root {
     /* New Color Palette */
-    --primary: #FE7743;         /* Orange - Primary brand color */
-    --dark: #273F4F;            /* Dark Blue - For text and dark elements */
-    --highlight: #FF9C6E;       /* Lighter Orange - For highlights */
-    --dark_blue: #2B4A5D;       /* Slightly lighter Dark Blue - For accents */
-    --secondary: #447D9B;       /* Medium Blue - Secondary brand color */
-    --accent: #FFD4B8;          /* Soft Peach - Brighter and more harmonious accent */
-    --light: #F8FAFC;           /* Very Light Blue - Page backgrounds */
-    --gray: #6F6F6F;            /* Medium Gray - Secondary text */
-    --light-gray: #E8ECEF;      /* Very Light Blue-Gray - Borders/shadows */
-    
+    --primary: #B22222;         /* Vivid orange-red */
+    --dark: #212529;            /* Very dark reddish-brown */
+    --highlight: #8A0000;       /* Bold deep red */
+    --dark_blue: #3B060A;       /* Using same dark tone for consistency */
+    --secondary: #212529;       /* Matching secondary with highlight */
+    --accent: #FFF1CA;          /* Soft yellow for light accents */
+    --light: #f8f9fa;           /* Light tint of yellow for backgrounds */
+    --gray: #5C3E3E;            /* Muted warm gray (custom complement) */
+    --light-gray: #FFF1CA;      /* Warm pale neutral */
+
     /* Neutral Colors */
     --white: #FFFFFF;
     --black: #000000;
-    --dark-mid: #3A4D5C;
-    --dark-gray: #4A5D6B;
-    --text-gray: #5A6D7B;
-    --mid-gray: #8A9AA8;
-    --text-light: #BBC7D1;
-    
+    --dark-mid: #592E2E;        /* Mid-dark red tone */
+    --dark-gray: #6B3F3F;       /* Warm dark gray */
+    --text-gray: #7A5252;       /* Softer brownish-gray for body text */
+    --mid-gray: #A7796D;        /* Warm medium gray */
+    --text-light: #D6B8A1;      /* Muted warm beige */
+
     /* State Colors */
-    --secondary-hover: #3A6D87;  /* Darker Blue - Hover states */
-    --popup-bg: #E8F2F8;         /* Light Blue - Popup background */
-    --frame-border: #C4D3DF;     /* Blue-Gray - Borders */
-    
+    --secondary-hover: #A00000;  /* Slightly lighter red for hover */
+    --popup-bg: #FFFAEC;         /* Soft yellow tint */
+    --frame-border: #F5E2A0;     /* Pale warm yellow for borders */
+
     /* Effects */
-    --soft-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --soft-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
     --black-rgb: 0,0,0;
 }
+
 
 * {
     margin: 0;
@@ -62,8 +63,8 @@ body {
     display: inline-block;
     margin-top: 15px;
     padding: 12px 25px;
-    background: var(--light-gray);
-    color: var(--dark_blue);
+    background: var(--primary);
+    color: var(--white);
     box-shadow: var(--soft-shadow);
     border-radius: 5px;
     font-weight: bold;
@@ -75,9 +76,7 @@ body {
 }
 
 .btn:hover {
-    background: var(--dark_blue);
-    color: var(--white);
-    transform: translateY(-3px);
+    transform: translateY(-10px);
 }
 
 .btn-secondary {
@@ -85,8 +84,49 @@ body {
 }
 
 .btn-secondary:hover {
-    background: var(--secondary-hover);
+    transform: translateY(-10px);
+    /* background: var(--secondary-hover); */
 }
+
+/* Swiper Button Styles */
+.swiper-button-next,
+.swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--dark_blue); /* Or any color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-shadow: var(--soft-shadow);
+    cursor: pointer;
+}
+
+/* Hide Swiper's default arrow */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    display: none;
+}
+
+/* Custom arrow using text */
+.swiper-button-next::before,
+.swiper-button-prev::before {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.swiper-button-next::before {
+    content: '▶'; /* or ▶ */
+}
+
+.swiper-button-prev::before {
+    content: '◀'; /* or ◀ */
+}
+
+
 
 /* ------------------------- */
 /* 3. Index Page */
@@ -256,7 +296,7 @@ header {
 }
 
 .sidebar-nav a:hover {
-    background: var(--secondary);
+    background: var(--accent);
     color: white;
 }
 
@@ -423,7 +463,7 @@ header {
 /* Featured products */
 .products {
     padding: 100px 0;
-    background: var(--accent);
+    background: var(--light);
 }
 
 .products-grid {
@@ -584,106 +624,92 @@ header {
     }
 }
 
-/* Recent Projects */
+/* 🎯 Recent Projects Section */
 .timeline-section {
     padding: 80px 0;
-    background: #f8f9fb;
+    background: var(--light);
     text-align: center;
 }
 
-.timeline-header p {
-    /* text-transform: uppercase; */
-    /* letter-spacing: 2px; */
-    font-size: 0.85rem;
-    color: var(--mid-gray);
-    margin: 0 0 10px;
+/* ✅ Swiper Container */
+.recent-projects-swiper {
+    max-width: 900px;    /* Controls overall slider width */
+    margin: 0 auto;      /* Centers slider */
+    padding: 10px 0;
 }
 
-.timeline-header h2 {
-    font-size: 2rem;
-    margin: 0 0 15px;
-    color: #1a1a1a;
-}
-
-.timeline-header .subtitle {
-    max-width: 600px;
-    margin: 0 auto 40px;
-    color: #666;
-}
-
-.timeline-content {
+/* ✅ Swiper Slides */
+.recent-projects-swiper .swiper-slide {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    gap: 40px;
-    flex-wrap: wrap;
+    align-items: center;
 }
 
-.timeline-years {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.year-btn {
-    background: transparent;
-    border: none;
-    padding: 10px 16px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    color: var(--dark-gray);
-    border-radius: 6px;
-    transition: background 0.2s, color 0.2s;
-}
-
-.year-btn:hover,
-.year-btn.active {
-    background: white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    color: #000;
-    font-weight: bold;
-}
-
-.timeline-display {
-    max-width: 600px;
-    text-align: left;
-    min-height: 380px;
-}
-
-.project-block {
-    margin-bottom: 40px;
-}
-
-.timeline-display img {
-    width: 100%;
+/* ✅ Project Card */
+.project-card {
+    background: #fff;
     border-radius: 10px;
-    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 320px;
 }
 
-.timeline-display h3 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    color: var(--dark);
+.project-card img,
+.project-card video {
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
-.timeline-display p {
-    font-size: 0.95rem;
-    color: var(--text-gray);
-    line-height: 1.6;
+/* ✅ Navigation Buttons */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #333;
+    transition: color 0.3s ease;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    color: #000;
 }
 
+/* ✅ Pagination Dots */
+.swiper-pagination-bullet {
+    background: #333;
+    opacity: 0.7;
+}
+.swiper-pagination-bullet-active {
+    background: #000;
+    opacity: 1;
+}
+
+/* ✅ Responsive Adjustments */
 @media (max-width: 768px) {
-    .timeline-content {
-        flex-direction: column;
-        align-items: center;
+    .recent-projects-swiper {
+        max-width: 100%;
+        padding: 0 15px;
     }
-
-    .timeline-years {
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
+    .project-card {
+        max-width: 250px;
+    }
+    .project-card img,
+    .project-card video {
+        max-height: 180px;
     }
 }
+
+@media (max-width: 480px) {
+    .project-card {
+        max-width: 220px;
+    }
+    .project-card img,
+    .project-card video {
+        max-height: 160px;
+    }
+}
+
 
 /* Footer */
 footer {
@@ -955,7 +981,7 @@ footer {
 /* ------------------------- */
 /* Page Banner */
 .about-section {
-    background: var(--accent);
+    background: var(--white);
     padding: 80px 20px;
     margin-top: 120px;
 }
@@ -1099,7 +1125,7 @@ footer {
 /* Team Slider */
 .our-team {
     padding: 80px 20px;
-    background-color: var(--accent);
+    background-color: var(--white);
 }
 
 .team-container {
@@ -1190,10 +1216,7 @@ footer {
 }
 
 /* Swiper navigation buttons */
-.swiper-button-next,
-.swiper-button-prev {
-    color: var(--secondary);
-}
+
 
 
 /* Our Certificates */
@@ -1300,21 +1323,6 @@ footer {
     font-family: "Georgia", serif;
 }
 
-/* Swiper Controls */
-.swiper-button-next,
-.swiper-button-prev {
-    color: var(--secondary);
-    top: 45%;
-}
-
-.swiper-button-prev {
-    left: -10px;
-}
-
-.swiper-button-next {
-    right: -10px;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
     .certificates-container {
@@ -1384,7 +1392,7 @@ footer {
 /*  */
 .contact-section {
     padding: 80px 20px;
-    background-color: var(--accent);
+    background-color: var(--light);
     margin-top: 120px;
 }
 
@@ -1615,17 +1623,17 @@ footer {
 #wares, 
 #general-equipments, 
 #lab-furniture {
-    background-color: var(--accent);
+    background-color: var(--light);
 }
 #lab-equipments, 
 #chemicals, 
 #minerals {
-    background-color: var(--light);
+    background-color: var(--white);
 }
 
 .product-category {
     padding: 80px 20px;
-    /* background-color: var(--accent); */
+    /* background-color: var(--light); */
 }
 
 .section-heading {
@@ -1928,10 +1936,6 @@ footer {
     color: var(--dark);
 }
 
-.swiper-button-next,
-.swiper-button-prev {
-    color: var(--primary);
-}
 
 .section-heading {
     font-size: 2.5rem;
