@@ -21,30 +21,27 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 try {
-
-
-    // Setup mail
+    // Setup mail (cPanel SMTP)
     $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com'; // or your SMTP server
+    $mail->Host = 'mail.my-proprima.com'; // cPanel mail server
     $mail->SMTPAuth = true;
-    $mail->Username = 'jiteshmoganaraja@gmail.com'; // your Gmail
-    $mail->Password = 'xagc lage ahcq kkha'; // App password, not your real password
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
-    $mail->Priority = 1; // High priority
-    $mail->AddCustomHeader("X-MSMail-Priority: High");
-    $mail->AddCustomHeader("X-Priority: 1");
-    $mail->AddCustomHeader("Importance: High");
+    $mail->Username = 'contacts@my-proprima.com'; // full email address
+    $mail->Password = '7PgxpH8I}eLB';     // replace with your mailbox password
+    $mail->SMTPSecure = 'ssl'; // or 'ssl' if TLS fails
+    $mail->Port = 465; // 587 for TLS, 465 for SSL
+    $mail->Priority = 1;
 
-
-    $mail->setFrom($email, $name);
-    $mail->addAddress('jiteshmoganaraja@gmail.com'); // where you want to receive the email
+    // Sender must match authenticated account on cPanel
+    $mail->setFrom($email, 'Website Contact');
+    $mail->addAddress('contacts@my-proprima.com'); // receive on same mailbox
+    // 👉 if you want to forward to Gmail as well, add another line:
+    // $mail->addAddress('yourpersonal@gmail.com');
 
     $mail->isHTML(true);
     $mail->Subject = "New message from $name";
     $mail->Body = '
     <div style="font-family: Georgia, serif; padding: 20px; color: #333;">
-        <h2 style="color: #00809D; border-bottom: 1px solid #ccc;">📬 New Contact Form Message</h2>
+        <h2 style="color: #00809D; border-bottom: 1px solid #ccc;">New Contact Form Message</h2>
         <p><strong style="color:#555;">Name:</strong> ' . htmlspecialchars($name) . '</p>
         <p><strong style="color:#555;">Email:</strong> ' . htmlspecialchars($email) . '</p>
         <p><strong style="color:#555;">Message:</strong><br>
@@ -52,7 +49,6 @@ try {
         <hr style="margin-top:30px;">
         <p style="font-size:12px; color:#999;">This message was sent from your website contact form.</p>
     </div>';
-
 
     $mail->send();
     echo json_encode(['success' => true]);
