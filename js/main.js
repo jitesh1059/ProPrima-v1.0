@@ -81,12 +81,16 @@ const recentProjectSwiper = new Swiper('.recent-projects-swiper', {
 // 
 // About Us Page
 // 
-const swiper = new Swiper('.swiper', {
+const teamSwiper = new Swiper('.swiper', {
     slidesPerView: 1,
     spaceBetween: 30,
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
     },
     breakpoints: {
         768: {
@@ -114,6 +118,10 @@ const certSwiper = new Swiper('.certificates-slider', {
         }
     }
 });
+
+// Immediately remove Swiper’s default SVGs
+document.querySelectorAll('.swiper-button-next svg, .swiper-button-prev svg')
+    .forEach(el => el.remove());
 
 // 
 // Products Page
