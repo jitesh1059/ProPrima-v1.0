@@ -14,7 +14,7 @@ $email   = trim($_POST['email'] ?? '');
 $message = trim($_POST['message'] ?? '');
 $website = trim($_POST['website'] ?? ''); // honeypot field (hidden in HTML)
 
-$recaptchaSecret = "6LdFmM4rAAAAAJT8jocqqE-zebcSEqNP9ud7iod5"; 
+$recaptchaSecret = "6LfkANUrAAAAAELUEE1Ttx0U-hxxYEEn9zBeWKzB"; 
 $recaptchaResponse = $_POST['g-recaptcha-response'] ?? '';
 
 $verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptchaSecret}&response={$recaptchaResponse}");
