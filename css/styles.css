@@ -3,34 +3,51 @@
 /* ------------------------- */
 :root {
     /* New Color Palette */
-    --primary: #B22222;         /* Vivid orange-red */
-    --dark: #212529;            /* Very dark reddish-brown */
-    --highlight: #8A0000;       /* Bold deep red */
-    --dark_blue: #3B060A;       /* Using same dark tone for consistency */
-    --secondary: #212529;       /* Matching secondary with highlight */
-    --accent: #FFF1CA;          /* Soft yellow for light accents */
-    --light: #f8f9fa;           /* Light tint of yellow for backgrounds */
-    --gray: #5C3E3E;            /* Muted warm gray (custom complement) */
-    --light-gray: #FFF1CA;      /* Warm pale neutral */
+    --primary: #B22222;
+    /* Vivid orange-red */
+    --dark: #212529;
+    /* Very dark reddish-brown */
+    --highlight: #8A0000;
+    /* Bold deep red */
+    --dark_blue: #3B060A;
+    /* Using same dark tone for consistency */
+    --secondary: #212529;
+    /* Matching secondary with highlight */
+    --accent: #FFF1CA;
+    /* Soft yellow for light accents */
+    --light: #f8f9fa;
+    /* Light tint of yellow for backgrounds */
+    --gray: #5C3E3E;
+    /* Muted warm gray (custom complement) */
+    --light-gray: #FFF1CA;
+    /* Warm pale neutral */
 
     /* Neutral Colors */
     --white: #FFFFFF;
     --black: #000000;
-    --dark-mid: #592E2E;        /* Mid-dark red tone */
-    --dark-gray: #6B3F3F;       /* Warm dark gray */
-    --text-gray: #7A5252;       /* Softer brownish-gray for body text */
-    --mid-gray: #A7796D;        /* Warm medium gray */
-    --text-light: #D6B8A1;      /* Muted warm beige */
+    --dark-mid: #592E2E;
+    /* Mid-dark red tone */
+    --dark-gray: #6B3F3F;
+    /* Warm dark gray */
+    --text-gray: #7A5252;
+    /* Softer brownish-gray for body text */
+    --mid-gray: #A7796D;
+    /* Warm medium gray */
+    --text-light: #D6B8A1;
+    /* Muted warm beige */
 
     /* State Colors */
-    --secondary-hover: #A00000;  /* Slightly lighter red for hover */
-    --popup-bg: #FFFAEC;         /* Soft yellow tint */
-    --frame-border: #F5E2A0;     /* Pale warm yellow for borders */
+    --secondary-hover: #A00000;
+    /* Slightly lighter red for hover */
+    --popup-bg: #FFFAEC;
+    /* Soft yellow tint */
+    --frame-border: #F5E2A0;
+    /* Pale warm yellow for borders */
 
     /* Effects */
     --soft-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
-    --black-rgb: 0,0,0;
+    --black-rgb: 0, 0, 0;
 }
 
 
@@ -94,7 +111,8 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: var(--dark_blue); /* Or any color */
+    background-color: var(--dark_blue);
+    /* Or any color */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,12 +136,25 @@ body {
     line-height: 1;
 }
 
+.swiper-button-next::before,
+.swiper-button-prev::before {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
 .swiper-button-next::before {
-    content: '▶'; /* or ▶ */
+    border-width: 8px 0 8px 12px;
+    /* top right bottom left */
+    border-color: transparent transparent transparent #fff;
+    /* black arrow */
 }
 
 .swiper-button-prev::before {
-    content: '◀'; /* or ◀ */
+    border-width: 8px 12px 8px 0;
+    border-color: transparent #fff transparent transparent;
 }
 
 
@@ -633,8 +664,10 @@ header {
 
 /* ✅ Swiper Container */
 .recent-projects-swiper {
-    max-width: 900px;    /* Controls overall slider width */
-    margin: 0 auto;      /* Centers slider */
+    max-width: 900px;
+    /* Controls overall slider width */
+    margin: 0 auto;
+    /* Centers slider */
     padding: 10px 0;
 }
 
@@ -650,7 +683,7 @@ header {
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 320px;
 }
@@ -670,6 +703,7 @@ header {
     color: #333;
     transition: color 0.3s ease;
 }
+
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
     color: #000;
@@ -680,6 +714,7 @@ header {
     background: #333;
     opacity: 0.7;
 }
+
 .swiper-pagination-bullet-active {
     background: #000;
     opacity: 1;
@@ -691,9 +726,11 @@ header {
         max-width: 100%;
         padding: 0 15px;
     }
+
     .project-card {
         max-width: 250px;
     }
+
     .project-card img,
     .project-card video {
         max-height: 180px;
@@ -704,6 +741,7 @@ header {
     .project-card {
         max-width: 220px;
     }
+
     .project-card img,
     .project-card video {
         max-height: 160px;
@@ -1620,13 +1658,14 @@ footer {
 }
 
 /* Individual Background Color Setting */
-#wares, 
-#general-equipments, 
+#wares,
+#general-equipments,
 #lab-furniture {
     background-color: var(--light);
 }
-#lab-equipments, 
-#chemicals, 
+
+#lab-equipments,
+#chemicals,
 #minerals {
     background-color: var(--white);
 }

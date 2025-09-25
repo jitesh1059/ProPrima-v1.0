@@ -7,6 +7,7 @@
     <title>Contact Us - Pro Prima</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
@@ -78,6 +79,15 @@
                         <label>Message</label>
                         <i class="fas fa-comment-dots"></i>
                     </div>
+
+                    <!-- Honeypot field (hidden from humans) -->
+                    <div style="display:none;">
+                        <input type="text" name="website" autocomplete="off">
+                    </div>
+
+                    <!-- Google reCAPTCHA -->
+                    <div class="g-recaptcha" data-sitekey="6LdFmM4rAAAAAJqaF3UrZFIRc_j3_cBWKYp9IaX1"></div>
+
                     <button type="submit" class="contact-submit">Send Message</button>
                 </form>
                 <div class="status" id="responseMessage"></div>
@@ -102,15 +112,18 @@
                                     responseBox.textContent = "✅ Message sent successfully!";
                                     responseBox.style.color = "green";
                                     form.reset();
+                                    grecaptcha.reset(); // reset the checkbox
                                 } else {
                                     responseBox.textContent = "❌ " + data.error;
                                     responseBox.style.color = "red";
+                                    grecaptcha.reset(); // force reset reCAPTCHA on error
                                 }
                             })
                             .catch(error => {
                                 responseBox.textContent = "❌ Something went wrong.";
                                 responseBox.style.color = "red";
                                 console.error(error);
+                                grecaptcha.reset();
                             });
                     });
                 });
@@ -138,9 +151,9 @@
                     <p>We are committed to providing you with on time delivery and affordable prices of laboratory
                         equipments, glasswares and our range of products to meet your every need.</p>
                     <div class="social-footer">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fas fa-phone-alt"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.facebook.com/p/Pro-Prima-100043468793320/"><i class="fab fa-facebook-f"></i></a>
+                        <a href="tel:+603-8011-8989"><i class="fas fa-phone-alt"></i></a>
+                        <a href="contact.html"><i class="fas fa-envelope"></i></a>
                         <!-- <a href="#"><i class="fab fa-linkedin-in"></i></a> -->
                     </div>
                 </div>
