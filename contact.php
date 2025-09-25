@@ -102,6 +102,7 @@ try {
     $mail->setFrom('contacts@my-proprima.com', 'Website Contact');
     $mail->addReplyTo($email, $name);
     $mail->addAddress('contacts@my-proprima.com');
+    $mail->addAddress('proprima@gmail.com');
 
     $mail->isHTML(true);
     $mail->Subject = "New message from $name";
